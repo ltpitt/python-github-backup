@@ -16,4 +16,4 @@ github_api_response = requests.get("https://api.github.com/users/" + GITHUB_USER
 github_api_response = json.loads(github_api_response)
 
 os.chdir(BACKUP_FOLDER_PATH)
-[subprocess.call(["git", "clone", item['clone_url']]) for item in github_api_response]
+result = [subprocess.call(["git", "clone", item['clone_url']]) for item in github_api_response]
