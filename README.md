@@ -11,8 +11,10 @@ Python script to backup all repositories from a specific user
 You are now good to go.
 
 ## How to use simple_notifications.py from command line
-If you can run from command line:    
-***python python-github-backup.py***
+If you run from command line:    
+***python python-github-backup.py***    
+
+Then all the repos for the user specified in the script GITHUB_USER variable will be saved in the folder named in the BACKUP_FOLDER_NAME variable
   
 ### Contribution guidelines ###
 
