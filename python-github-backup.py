@@ -15,5 +15,4 @@ github_api_response = requests.get("https://api.github.com/users/ltpitt/repos").
 github_api_response = json.loads(github_api_response)
 
 os.chdir(BACKUP_FOLDER_PATH)
-for item in github_api_response:
-    subprocess.call(["git", "clone", item['clone_url']])
+[subprocess.call(["git", "clone", item['clone_url']]) for item in github_api_response]
