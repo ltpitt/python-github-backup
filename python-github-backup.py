@@ -16,4 +16,10 @@ github_api_response = requests.get("https://api.github.com/users/" + GITHUB_USER
 github_api_response = json.loads(github_api_response)
 
 os.chdir(BACKUP_FOLDER_PATH)
-result = [subprocess.call(["git", "clone", item['clone_url']]) for item in github_api_response]
+
+try:
+    result = [subprocess.call(["git", "clone", item['clone_url']]) for item in github_api_response]
+    print "Backup is done, hoorray! :)"
+except OSError as e:
+    print "Ouch! Backup threw an error:"
+    print e.strerror
