@@ -5,12 +5,17 @@ import os
 import datetime
 import shutil
 
+# Change this variable content with the GitHub username you want to use
 GITHUB_USERNAME = "ltpitt"
+# If needed also change the backup folder name
 BACKUP_FOLDER_NAME = "backup"
+# And the maximum number of full backups you want to keep
+BACKUP_RETENTION_PERIOD_IN_DAYS = 7
+
+# All the lines below do not need any change
 SCRIPT_FOLDER_PATH = os.path.dirname(os.path.abspath(__file__))
 BACKUP_FOLDER_PATH = os.path.join(SCRIPT_FOLDER_PATH, BACKUP_FOLDER_NAME)
 TODAY_BACKUP_FOLDER_PATH = os.path.join(BACKUP_FOLDER_PATH, datetime.datetime.now().strftime('%Y%m%d'))
-BACKUP_RETENTION_PERIOD_IN_DAYS = 7
 
 def create_folders():
     """
