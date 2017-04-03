@@ -66,7 +66,7 @@ def rotate_folders():
     Deletes all folders in BACKUP_FOLDER_PATH older than BACKUP_RETENTION_PERIOD_IN_DAYS
     """
     backup_folders_list = os.listdir(BACKUP_FOLDER_PATH)
-    sorted_backup_folders_list = sorted(BACKUP_FOLDER_PATH)
+    sorted_backup_folders_list = sorted(backup_folders_list)
     if len(sorted_backup_folders_list) > BACKUP_RETENTION_PERIOD_IN_DAYS:
         print "Rotating backup folders and deleting old backups"
         sleep(1)
