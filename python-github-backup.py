@@ -75,6 +75,8 @@ def rotate_folders():
         print "Deleting old folder: " + folder_to_delete_path
         sleep(1)
         shutil.rmtree(folder_to_delete_path)
+        # Use recursion to delete the oldest folders until the maximum retention period constraint is met
+        rotate_folders()
 
 # Let's rock :)      
 perform_backup()
