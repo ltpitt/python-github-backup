@@ -70,7 +70,7 @@ def rotate_folders():
     if len(sorted_backup_folders_list) > BACKUP_RETENTION_PERIOD_IN_DAYS:
         print "Rotating backup folders and deleting old backups"
         sleep(1)
-        folder_to_delete = sorted_backup_folders_list.pop()
+        folder_to_delete = sorted_backup_folders_list.pop(0)
         folder_to_delete_path = os.path.join(BACKUP_FOLDER_PATH, folder_to_delete)
         print "Deleting old folder: " + folder_to_delete_path
         sleep(1)
