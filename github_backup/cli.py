@@ -74,11 +74,12 @@ def rotate_folders(backup_folder_path, retention_period):
 def main(retention_period, username, backup_folder_path):
     """GitHub Backup will backup all repositories for the specified user with options for retention"""
     today_backup_folder_path = os.path.join(backup_folder_path, datetime.datetime.now().strftime('%Y%m%d'))
-    click.echo('username: ' + username)
-    click.echo('backup-folder-path: ' + backup_folder_path)
-    click.echo('retention-period: ' + str(retention_period))
+    click.echo('Starting GitHub backup...')
+    click.echo('User ' + username + '\'s repositories will be saved in: ' + backup_folder_path)
+    click.echo('The maximum number of backup folder kept is: ' + str(retention_period))
     perform_backup(backup_folder_path, today_backup_folder_path, username)
     rotate_folders()
+    click.echo('GitHub backup for user ' + username + ' is now complete')
 
 # Uncomment those rows for manual testing
 #if __name__ == '__main__':
