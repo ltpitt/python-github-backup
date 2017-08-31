@@ -65,7 +65,7 @@ def rotate_folders(backup_folder_path, retention_period):
         sleep(1)
         shutil.rmtree(folder_to_delete_path)
         # Use recursion to delete the oldest folders until the maximum retention period constraint is met
-        rotate_folders()
+        rotate_folders(backup_folder_path, retention_period)
 
 @click.command()
 @click.option('--retention-period', '-r', default=3, help='Maximum number of full backups your want to keep, expressed in days (2 will keep, for example, today\'s and yesterday\'s backups and delete the older ones)', required=False)
@@ -78,7 +78,7 @@ def main(retention_period, username, backup_folder_path):
     click.echo('User ' + username + '\'s repositories will be saved in: ' + backup_folder_path)
     click.echo('The maximum number of backup folder kept is: ' + str(retention_period))
     perform_backup(backup_folder_path, today_backup_folder_path, username)
-    rotate_folders()
+    rotate_folders(backup_folder_path, retention_period)
     click.echo('GitHub backup for user ' + username + ' is now complete')
 
 # Uncomment those rows for manual testing
