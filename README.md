@@ -31,6 +31,22 @@ Once pipsi is installed, from the script folder:
 To use it:
 
     $ github-backup --help
+    
+```
+Usage: github-backup [OPTIONS]
+
+  GitHub Backup will backup all repositories for the specified user with
+  options for retention
+
+Options:
+  -r, --retention-period INTEGER  Maximum number of full backups your want to
+                                  keep, expressed in days (2 will keep, for
+                                  example, today's and yesterday's backups and
+                                  delete the older ones)
+  -u, --username TEXT             Specify a GitHub username  [required]
+  -p, --backup-folder-path TEXT   Specify the backup folder path  [required]
+  --help                          Show this message and exit.
+```
 
 ## How to schedule automatic script execution
 * If you have Windows: https://technet.microsoft.com/en-us/library/cc748993(v=ws.11).aspx
