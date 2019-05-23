@@ -14,18 +14,18 @@ def create_folders(backup_folder_path, today_backup_folder_path):
     folders = [backup_folder_path, today_backup_folder_path]
     for folder in folders:
         if not os.path.exists(folder):
-            print "Creating folder: " + folder
+            click.echo("Creating folder: " + folder)
             sleep(1)
             os.makedirs(folder)
         else:
-            print "Folder already exists: " + folder
+            click.echo("Folder already exists: " + folder)
             sleep(1)
 
 def get_repository_list_for_specified_user(username):
     """
     Gets complete repository list for specified GitHub username
     """
-    print "Getting GitHub repository list for user: " + username
+    click.echo("Getting GitHub repository list for user: " + username)
     sleep(1)
     github_api_response = requests.get("https://api.github.com/users/" + username + "/repos").text
     repository_list = json.loads(github_api_response)
@@ -35,20 +35,20 @@ def perform_backup(backup_folder_path, today_backup_folder_path, username):
     """
     Clones all repositories for specified username into today_backup_folder_path
     """
-    print "Checking / Creating backup folders..."
+    click.echo("Checking / Creating backup folders...")
     sleep(1)
     create_folders(backup_folder_path, today_backup_folder_path)
-    print "Changing current directory to: " + today_backup_folder_path
+    click.echo("Changing current directory to: " + today_backup_folder_path)
     sleep(1)
     os.chdir(today_backup_folder_path)
-    print "Running git clone of all available repositories for user: " + username
+    print ("Running git clone of all available repositories for user: " + username)
     sleep(1)
     try:
         result = [subprocess.call(["git", "clone", item['clone_url']]) for item in get_repository_list_for_specified_user(username)]
-        print "Backup is done, hoorray! :)"
+        click.echo("Backup is done, hoorray! :)")
     except OSError as e:
-        print "Ouch! Backup threw an error:"
-        print e.strerror
+        click.echo("Ouch! Backup threw an error:")
+        click.echo(e.strerror)
 
 def rotate_folders(backup_folder_path, retention_period):
     """
@@ -57,11 +57,11 @@ def rotate_folders(backup_folder_path, retention_period):
     backup_folders_list = os.listdir(backup_folder_path)
     sorted_backup_folders_list = sorted(backup_folders_list)
     if len(sorted_backup_folders_list) > retention_period:
-        print "Rotating backup folders and deleting old backups"
+        click.echo("Rotating backup folders and deleting old backups")
         sleep(1)
         folder_to_delete = sorted_backup_folders_list.pop(0)
         folder_to_delete_path = os.path.join(backup_folder_path, folder_to_delete)
-        print "Deleting old folder: " + folder_to_delete_path
+        click.echo("Deleting old folder: " + folder_to_delete_path)
         sleep(1)
         shutil.rmtree(folder_to_delete_path)
         # Use recursion to delete the oldest folders until the maximum retention period constraint is met
